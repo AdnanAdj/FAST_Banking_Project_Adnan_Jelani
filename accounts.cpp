@@ -1,5 +1,5 @@
 //Errors Fixed 
-//Assignment # 2, Applied Programming 2
+//Assignment # 1, Applied Programming
 //By Adnan Jelani
 //Answer for Q2
 
