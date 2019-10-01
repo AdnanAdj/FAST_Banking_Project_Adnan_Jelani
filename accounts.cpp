@@ -1,6 +1,7 @@
 //Errors Fixed 
-//Assignment # 2, Applied Programming 2 
+//Assignment # 2, Applied Programming 2
 //By Adnan Jelani
+//Answer for Q2
 
 #include<iostream> 
 #include<fstream> 
