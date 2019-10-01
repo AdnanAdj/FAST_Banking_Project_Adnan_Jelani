@@ -1,4 +1,5 @@
-//Assignment # 2 , Applied Programming 
+//Errors Fixed 
+//Assignment # 2, Applied Programming 2 
 //By Adnan Jelani
 
 #include<iostream> 
@@ -6,99 +7,99 @@
 #include<cctype> 
 #include<iomanip> 
 using namespace std; 
- 
-class accounts 
+
+class accounts
 {
-int accNo;
+int ano;
 char name[100];
 int dep;
 char type;
 public:
-void createaccount();
+void createaccount(); 
 void showacccount() const; 
-void modifyAccDetails();
-void draw(int);
-void acceptDep(int); 
-void report() const;
-int retaccNo() const; 
-int retbal() const;
-char qtype() const;
+void modify(); 
+void acceptDeposit(int) ;
+void draw(int); 
+void report() const; 
+int retano() const; 
+int retbal() const; 
+char qtype() const; 
 }; 
- 
+
 void accounts::createaccount()
 {
 cout<<"\nEnter The Account Number :";
-cin>>accNo;
+cin>>ano;
 cout<<"\n\nEnter, Name of The Account Holder : ";
 cin.ignore();
 cin.getline(name,100);
 cout<<"\nEnter Type of Account(Current/Savings) : ";
 cin>>type;
 cout<<"\nEnter The Initial amount(>=500 for Saving and >=1000 for current ) : ";
-cin>>dep;
+cin>>dep; 
 cout<<"\n\n\nCongrats Account Has Been Created..";
 }
- 
+
 void accounts::showacccount() const
 {
-cout<<"\nAccount Number : "<<accNo;
+cout<<"\nAccount Number : "<<ano;
 cout<<"\nAccount Holder Name : ";
 cout<<name;
 cout<<"\nType of Account : "<<type;
 cout<<"\nBalance amount : "<<dep;
 }
- 
- 
-void accounts::modifyAccDetails()
+
+
+void accounts::modify()
 {
-cout<<"\nAccount Number : "<<accNo;
-cout<<"\nmodifyAccDetails Account Holder Name : ";
+cout<<"\nAccount Number : "<<ano;
+cout<<"\nModify Account Holder Name : ";
 cin.ignore();
 cin.getline(name,100);
-cout<<"\nmodifyAccDetails Type of Account : ";
+cout<<"\nModify Type of Account : ";
 cin>>type;
-cout<<"\nmodifyAccDetails Balance amount : ";
+cout<<"\nModify Balance amount : ";
 cin>>dep;
 }
- 
-void accounts::acceptDep(int x)
+
+void accounts::acceptDeposit(int x)
 {
 dep+=x;
 }
- 
+  
 void accounts::draw(int x)
 {
 dep-=x;
 }
- 
+  
 void accounts::report() const
 {
-cout<<accNo<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<dep<<endl;
+cout<<ano<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<dep<<endl;
 }
- 
-int accounts::retaccNo() const
+  
+int accounts::retano() const
 {
-return accNo;
+return ano;
 }
- 
+
 int accounts::retbal() const
 {
 return dep;
 }
- 
+
 char accounts::qtype() const
 {
 return type;
 }
- 
-void write_acc();
-void display_sp(int);
-void modifyAccDetails_acc(int);
-void delete_acc(int);
-void display_all();
-void dep_withdraw(int, int);
-void intro();
- 
+
+void write_acc(); 
+void display_sp(int); 
+void modify_acc(int); 
+void delete_acc(int); 
+void display_all(); 
+void dep_withdraw(int, int); 
+void intro(); 
+
 int main()
 {
 char ch;
@@ -106,7 +107,7 @@ int num;
 intro();
 do
 {
-system("cls");
+system("cls"); 
 cout<<"\n\n\n\tACTION MENU";
 cout<<"\n\n\t01. NEW ACCOUNT";
 cout<<"\n\n\t02. DEPOSIT";
@@ -114,11 +115,11 @@ cout<<"\n\n\t03. WITHDRAW";
 cout<<"\n\n\t04. BALANCE ENQUIRY";
 cout<<"\n\n\t05. COMPLETE ACCOUNT HOLDERS LIST";
 cout<<"\n\n\t06. CLOSE AN ACCOUNT";
-cout<<"\n\n\t07. modifyAccDetails AN ACCOUNT";
+cout<<"\n\n\t07. MODIFY AN ACCOUNT";
 cout<<"\n\n\t08. EXIT";
 cout<<"\n\n\tSelect Your Option (1-8) ";
 cin>>ch;
-system("cls");
+system("cls"); 
 switch(ch)
 {
 case '1':
@@ -145,7 +146,7 @@ delete_acc(num);
 break;
 case '7':
 cout<<"\n\n\tEnter The Account Number : "; cin>>num;
-modifyAccDetails_acc(num);
+modify_acc(num);
 break;
 case '8':
 cout<<"\n\n\tThanks For Visiting Our Bank!";
@@ -156,7 +157,7 @@ cin.ignore();
 cin.get();
 }while(ch!='8');
 return 0;
-}// Function To write the account data to .dat file
+}
 void write_acc()
 {
 accounts ac;
@@ -166,9 +167,10 @@ ac.createaccount();
 x.write(reinterpret_cast<char *> (&ac), sizeof(accounts));
 x.close();
 }
- 
- 
-void display_sp(int n)
+
+
+void display_sp(int n) 
+{
 accounts ac;
 bool flag=false;
 ifstream x;
@@ -179,10 +181,10 @@ cout<<"File could not be opened!! Press any Key to exit...";
 return;
 }
 cout<<"\nBALANCE DETAILS\n";
- 
+
 while(x.read(reinterpret_cast<char *> (&ac), sizeof(accounts)))
 {
-if(ac.retaccNo()==n)
+if(ac.retano()==n)
 {
 ac.showacccount();
 flag=true;
@@ -192,7 +194,7 @@ x.close();
 if(flag==false)
 cout<<"\n\nAccount number does not exist";
 }
-void modifyAccDetails_acc(int n)
+void modify_acc(int n)
 {
 bool found=false;
 accounts ac;
@@ -200,17 +202,17 @@ fstream x;
 x.open("info.dat",ios::binary|ios::in|ios::out);
 if(!x)
 {
-cout<<"File could not be open! Press any Key...";
+cout<<"File could not be open !! Press any Key...";
 return;
 }
 while(!x.eof() && found==false)
 {
 x.read(reinterpret_cast<char *> (&ac), sizeof(accounts));
-if(ac.retaccNo()==n)
+if(ac.retano()==n)
 {
 ac.showacccount();
 cout<<"\n\nEnter The New Details of account"<<endl;
-ac.modifyAccDetails();
+ac.modify();
 int pos=(-1)*static_cast<int>(sizeof(accounts));
 x.seekp(pos,ios::cur);
 x.write(reinterpret_cast<char *> (&ac), sizeof(accounts));
@@ -237,7 +239,7 @@ y.open("Temp.dat",ios::binary);
 x.seekg(0,ios::beg);
 while(x.read(reinterpret_cast<char *> (&ac), sizeof(accounts)))
 {
-if(ac.retaccNo()!=n)
+if(ac.retano()!=n)
 {
 y.write(reinterpret_cast<char *> (&ac), sizeof(accounts));
 }
@@ -283,7 +285,7 @@ return;
 while(!x.eof() && found==false)
 {
 x.read(reinterpret_cast<char *> (&ac), sizeof(accounts));
-if(ac.retaccNo()==n)
+if(ac.retano()==n)
 {
 ac.showacccount();
 if(option==1)
@@ -291,7 +293,7 @@ if(option==1)
 cout<<"\n\n\tTO DEPOSITE AMOUNT ";
 cout<<"\n\nEnter The amount to be deposited";
 cin>>amt;
-ac.acceptDep(amt);
+ac.acceptDeposit(amt);
 }
 if(option==2)
 {
@@ -317,8 +319,9 @@ cout<<"\n\n Record Not Found ";
 }
 void intro()
 {
-cout<<"\n\n\n\tWelcome To FAST BANKING MANAGEMENT SYSTEM";
-cout<<"\n\nA C++ Code Project by Adnan Jelani, Student At FAST NUCES";
+cout<<"\n\n\n\tWelcome To BANK MANAGEMENT SYSTEM";
+cout<<"\n\nA AP Assignment #1 Adnan Jelani, FAST NUCES";
+
 cout<<"\nPress Enter To Continue........";
 cin.get();
 }
